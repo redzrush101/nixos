@@ -1,0 +1,45 @@
+# i3blocks config file
+#
+# Catppuccin Mocha Flavor
+# Background: #1e1e2e
+# Foreground: #cdd6f4
+#
+# Colors
+# Blue: #89b4fa
+# Red: #f38ba8
+# Green: #a6e3a1
+# Yellow: #f9e2af
+# Mauve: #cba6f7
+
+# Global properties
+separator=true
+separator_block_width=20
+markup=pango
+align=center
+color=#cdd6f4
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
+label=<span color="#cba6f7">󱑒  </span>
+
+[volume]
+command=pamixer --get-volume-human
+interval=once
+signal=10
+label=<span color="#89b4fa">  </span>
+
+[cpu]
+command=top -bn2 -d 0.1 | grep "Cpu(s)" | tail -1 | awk '{print 100 - $8 "%"}'
+interval=5
+label=<span color="#a6e3a1">  </span>
+
+[memory]
+command=free -h | awk '/^Mem:/ {print $3}'
+interval=30
+label=<span color="#f9e2af">  </span>
+
+[network]
+command=ping -c 1 google.com >/dev/null 2>&1 && echo "UP" || echo "DOWN"
+interval=10
+label=<span color="#f38ba8">󰖩  </span>
