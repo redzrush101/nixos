@@ -47,6 +47,9 @@
       overlay-iflow = final: prev: {
         iflow-cli = prev.callPackage ./pkgs/iflow-cli/default.nix { };
       };
+      overlay-iloader = final: prev: {
+        iloader = prev.callPackage ./pkgs/iloader/default.nix { };
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -57,10 +60,12 @@
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.gigabyte-b550
           home-manager.nixosModules.home-manager
+          ./modules/nixos/services/iloader.nix
           {
             nixpkgs.overlays = [
               overlay-llm-agents
               overlay-iflow
+              overlay-iloader
               inputs.nix-cachyos-kernel.overlays.default
             ];
             home-manager.useGlobalPkgs = true;
@@ -75,6 +80,7 @@
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
           iflow-cli = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/iflow-cli/default.nix { };
+          iloader = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/iloader/default.nix { };
         };
     };
 }
