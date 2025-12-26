@@ -12,5 +12,6 @@
     ../../modules/nixos/filesystems.nix
     ../../modules/nixos/packages.nix
     ../../modules/nixos/users.nix
+    ../../modules/nixos/nix-settings.nix
   ];
 }
