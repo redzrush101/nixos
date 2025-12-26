@@ -29,7 +29,6 @@
     pkgs.kitty # Terminal for initial usage
     pkgs.polkit_gnome
     pkgs.wmenu # Required by xdg-desktop-portal-wlr for output chooser
-    pkgs.slurp # Region selector for screen capture
   ];
 
   environment.sessionVariables = {
@@ -54,7 +53,15 @@
   # XDG Portals
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_type = "simple";
+          chooser_cmd = "${pkgs.slurp}/bin/slurp -f '%o' -or";
+        };
+      };
+    };
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config = {
       common = {
