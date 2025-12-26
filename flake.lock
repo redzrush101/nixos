@@ -77,11 +77,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766782201,
-        "narHash": "sha256-f55IdEougb7t6/V2JeRP69nh5o2oWxRFd4QvrtF+AEw=",
+        "lastModified": 1766784916,
+        "narHash": "sha256-qsCQ/dfTXMvtkb8fK9n25g2PMR1CvISxYpUf3Ctl3is=",
         "owner": "redzrush101",
         "repo": "custom-nix-pkgs",
-        "rev": "f45713c192b4883e9e4a9f8417fa47dde65cb819",
+        "rev": "28f68e93951f03da339670c5e199e3fce78ff7f1",
         "type": "github"
       },
       "original": {
