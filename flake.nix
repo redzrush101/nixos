@@ -30,6 +30,11 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    custom-pkgs = {
+      url = "github:redzrush101/custom-nix-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,10 +50,10 @@
         llm-agents = inputs.llm-agents.packages.x86_64-linux;
       };
       overlay-iflow = final: prev: {
-        iflow-cli = prev.callPackage ./pkgs/iflow-cli/default.nix { };
+        iflow-cli = inputs.custom-pkgs.packages.x86_64-linux.iflow-cli;
       };
       overlay-iloader = final: prev: {
-        iloader = prev.callPackage ./pkgs/iloader/default.nix { };
+        iloader = inputs.custom-pkgs.packages.x86_64-linux.iloader;
       };
     in
     {
@@ -79,8 +84,7 @@
       packages.x86_64-linux =
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
-          iflow-cli = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/iflow-cli/default.nix { };
-          iloader = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/iloader/default.nix { };
+          inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader;
         };
     };
 }

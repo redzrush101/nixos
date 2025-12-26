@@ -31,4 +31,7 @@
     util-linux
     btop
   ];
+
+  # Services
+  services.iloader.enable = true;
 }
