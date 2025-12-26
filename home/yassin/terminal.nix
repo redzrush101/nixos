@@ -13,6 +13,14 @@
   xdg.configFile."kitty/kitty.conf".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/nixos/dotfiles/kitty/kitty.conf";
 
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    settings = {
+      theme = "catppuccin_mocha";
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
