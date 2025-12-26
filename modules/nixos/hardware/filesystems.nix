@@ -13,19 +13,19 @@
       "mount_options.conf" = {
         # Using specific sections instead of just [defaults] for better compatibility
         ntfs = {
-          defaults = "noatime,force";
-          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard";
+          defaults = "noatime,prealloc,windows_names,nocase";
+          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
         };
         ntfs3 = {
-          defaults = "noatime,force";
-          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard";
+          defaults = "noatime,prealloc,windows_names,nocase";
+          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
         };
         # Keeping [defaults] as a fallback
         defaults = {
-          ntfs_defaults = "noatime,force";
-          ntfs_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard";
-          ntfs3_defaults = "noatime,force";
-          ntfs3_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard";
+          ntfs_defaults = "noatime,prealloc,windows_names,nocase";
+          ntfs_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
+          ntfs3_defaults = "noatime,prealloc,windows_names,nocase";
+          ntfs3_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
         };
       };
     };
