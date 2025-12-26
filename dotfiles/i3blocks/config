@@ -1,120 +1,55 @@
 # i3blocks config file
-# Catppuccin Mocha Theme
 #
-# Colors Reference:
-# Base:     #1e1e2e | Surface0: #313244 | Surface1: #45475a
-# Text:     #cdd6f4 | Subtext0: #a6adc8 | Overlay0: #6c7086
-# Blue:     #89b4fa | Green:    #a6e3a1 | Yellow:   #f9e2af
-# Red:      #f38ba8 | Mauve:    #cba6f7 | Lavender: #b4befe
-# Teal:     #94e2d5 | Peach:    #fab387 | Pink:     #f5c2e7
+# Catppuccin Mocha Flavor
+# Background: #1e1e2e
+# Foreground: #cdd6f4
+# Colors:
+# Blue: #89b4fa
+# Red: #f38ba8
+# Green: #a6e3a1
+# Yellow: #f9e2af
+# Mauve: #cba6f7
+# Peach: #fab387
 
 # Global properties
-separator=false
-separator_block_width=0
+separator=true
+separator_block_width=20
 markup=pango
 align=center
 color=#cdd6f4
-border_top=0
-border_bottom=2
-border_left=0
-border_right=0
 
-# Spacer block for consistent padding
-[spacer]
-full_text=<span> </span>
-separator=false
-separator_block_width=8
-
-# =============================================================================
-# MEDIA PLAYER
-# =============================================================================
 [media]
-command=playerctl metadata --format '{{ artist }} - {{ title }}' 2>/dev/null | head -c 50 || echo ""
+command=playerctl metadata --format "{{ artist }} - {{ title }}" 2>/dev/null | head -c 40
 interval=5
-border=#f5c2e7
-label=<span color="#f5c2e7">  </span>
+label=<span color="#f5c2e7">  </span>
 
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# DISK USAGE
-# =============================================================================
-[disk_root]
+[disk]
 command=df -h / | awk 'NR==2 {print $5}'
 interval=60
-border=#fab387
-label=<span color="#fab387">  </span>
+label=<span color="#fab387">󰋊  </span>
 
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# VOLUME
-# =============================================================================
 [volume]
-command=vol=$(pamixer --get-volume 2>/dev/null); mute=$(pamixer --get-mute 2>/dev/null); if [ "$mute" = "true" ]; then echo "<span color='#f38ba8'>MUTED</span>"; else echo "${vol}%"; fi
+command=pamixer --get-volume-human
 interval=once
 signal=10
-border=#89b4fa
-label=<span color="#89b4fa">  </span>
+label=<span color="#89b4fa">  </span>
 
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# CPU USAGE
-# =============================================================================
 [cpu]
-command=top -bn2 -d 0.1 | grep "Cpu(s)" | tail -1 | awk '{printf "%.0f%%", 100 - $8}'
+command=top -bn2 -d 0.1 | grep "Cpu(s)" | tail -1 | awk '{print 100 - $8 "%"}'
 interval=5
-border=#a6e3a1
-label=<span color="#a6e3a1">  </span>
+label=<span color="#a6e3a1">  </span>
 
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# MEMORY
-# =============================================================================
 [memory]
-command=free -h | awk '/^Mem:/ {print $3 "/" $2}'
+command=free -h | awk '/^Mem:/ {print $3}'
 interval=30
-border=#f9e2af
-label=<span color="#f9e2af">  </span>
+label=<span color="#f9e2af">  </span>
 
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# NETWORK
-# =============================================================================
 [network]
-command=if ping -c 1 -W 1 1.1.1.1 >/dev/null 2>&1; then ip -4 addr show | grep -oP '(?<=inet\s)192\.[0-9.]+' | head -1 || echo "Connected"; else echo "<span color='#f38ba8'>Offline</span>"; fi
+command=ip -4 addr show | grep -oP '(?<=inet\s)192\.[0-9.]+' | head -1 || echo "Offline"
 interval=10
-border=#94e2d5
-label=<span color="#94e2d5">󰖩  </span>
-
-[spacer]
-full_text=<span color="#45475a"> │ </span>
-
-# =============================================================================
-# DATE & TIME
-# =============================================================================
-[date]
-command=date '+%a %d %b'
-interval=60
-border=#cba6f7
-label=<span color="#cba6f7">  </span>
-
-[spacer]
-full_text=<span color="#45475a">  </span>
+label=<span color="#f38ba8">󰖩  </span>
 
 [time]
-command=date '+%H:%M'
+command=date '+%Y-%m-%d %H:%M:%S'
 interval=1
-border=#b4befe
-label=<span color="#b4befe">  </span>
-
-[spacer]
-full_text=<span> </span>
+label=<span color="#cba6f7">󱑒  </span>
