@@ -21,6 +21,10 @@
     };
   };
 
+  # Link Helix runtime (themes/grammars) to ~/.local/share/helix/runtime
+  # This makes themes available to the Ubuntu Distrobox container
+  home.file.".local/share/helix/runtime".source = "${pkgs.helix}/lib/runtime";
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
