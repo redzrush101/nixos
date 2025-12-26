@@ -5,31 +5,18 @@
   services.udisks2 = {
     enable = true;
     settings = {
-      "udisks2.conf" = {
-        defaults = {
-          ntfs_driver = "ntfs3";
-        };
-      };
-      "mount_options.conf" = {
-        # Using specific sections instead of just [defaults] for better compatibility
-        ntfs = {
-          defaults = "noatime,prealloc,windows_names,nocase";
-          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
-        };
-        ntfs3 = {
-          defaults = "noatime,prealloc,windows_names,nocase";
-          allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
-        };
-        # Keeping [defaults] as a fallback
-        defaults = {
-          ntfs_defaults = "noatime,prealloc,windows_names,nocase";
-          ntfs_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
-          ntfs3_defaults = "noatime,prealloc,windows_names,nocase";
-          ntfs3_allow = "uid=$UID,gid=$GID,noatime,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase";
-        };
-      };
     };
   };
+
+  # Ensure udisks2 mount options are written to the correct file
+  environment.etc."udisks2/mount_options.conf".text = ''
+    [defaults]
+    ntfs_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase
+    ntfs_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase
+    
+    ntfs3_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase
+    ntfs3_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase
+  '';
 
   # Enable GVfs for MTP (Android) and other userspace filesystems
   services.gvfs.enable = true;
