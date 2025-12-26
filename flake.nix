@@ -44,6 +44,9 @@
       overlay-llm-agents = final: prev: {
         llm-agents = inputs.llm-agents.packages.x86_64-linux;
       };
+      overlay-iflow = final: prev: {
+        iflow-cli = prev.callPackage ./pkgs/iflow-cli/default.nix { };
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -57,6 +60,7 @@
           {
             nixpkgs.overlays = [
               overlay-llm-agents
+              overlay-iflow
               inputs.nix-cachyos-kernel.overlays.default
             ];
             home-manager.useGlobalPkgs = true;
@@ -70,6 +74,7 @@
       packages.x86_64-linux =
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
+          iflow-cli = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/iflow-cli/default.nix { };
         };
     };
 }

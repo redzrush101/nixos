@@ -25,6 +25,7 @@
     xdg-utils
     file
     python3
+    iflow-cli
     multipath-tools
     openssl
     util-linux

@@ -7,6 +7,9 @@
   nix.settings = {
     # Enable flakes
     experimental-features = [ "nix-command" "flakes" ];
+
+    # Auto-optimise store
+    auto-optimise-store = true;
     
     # Binary caches
     substituters = [
@@ -18,6 +21,10 @@
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
+
+  # Automatic store optimization
+  nix.optimise.automatic = true;
+  nix.optimise.dates = [ "03:45" ]; # Run daily at 03:45
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
