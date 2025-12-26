@@ -25,6 +25,10 @@
   # This makes themes available to the Ubuntu Distrobox container
   home.file.".local/share/helix/runtime".source = "${pkgs.helix}/lib/runtime";
 
+  home.sessionVariables = {
+    HELIX_RUNTIME = "${config.home.homeDirectory}/.local/share/helix/runtime";
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
