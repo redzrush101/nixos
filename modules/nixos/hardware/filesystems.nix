@@ -11,11 +11,17 @@
   # Ensure udisks2 mount options are written to the correct file
   environment.etc."udisks2/mount_options.conf".text = ''
     [defaults]
+    # For ntfs3 driver
+    ntfs:ntfs3_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase,iocharset=utf8
+    ntfs:ntfs3_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase,iocharset=utf8
+
+    # For ntfs-3g driver (as fallback)
+    ntfs:ntfs_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase
+    ntfs:ntfs_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase
+
+    # Generic fallbacks
     ntfs_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase
-    ntfs_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase
-    
     ntfs3_defaults=uid=$UID,gid=$GID,noatime,noexec,prealloc,windows_names,nocase
-    ntfs3_allow=uid=$UID,gid=$GID,noatime,noexec,force,umask,dmask,fmask,discard,prealloc,windows_names,nocase
   '';
 
   # Enable GVfs for MTP (Android) and other userspace filesystems
