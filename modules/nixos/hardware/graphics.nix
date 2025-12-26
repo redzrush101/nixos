@@ -28,6 +28,8 @@
     inputs.scroll-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kitty # Terminal for initial usage
     pkgs.polkit_gnome
+    pkgs.wmenu # Required by xdg-desktop-portal-wlr for output chooser
+    pkgs.slurp # Region selector for screen capture
   ];
 
   environment.sessionVariables = {
