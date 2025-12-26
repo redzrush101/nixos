@@ -41,7 +41,6 @@
       ...
     }@inputs:
     let
-      overlay-local = import ./pkgs { inherit inputs; };
       overlay-llm-agents = final: prev: {
         llm-agents = inputs.llm-agents.packages.x86_64-linux;
       };
@@ -51,13 +50,12 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixos/default.nix
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.gigabyte-b550
           home-manager.nixosModules.home-manager
           {
             nixpkgs.overlays = [
-              overlay-local
               overlay-llm-agents
               inputs.nix-cachyos-kernel.overlays.default
             ];
@@ -70,9 +68,6 @@
       };
 
       packages.x86_64-linux =
-        let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux.extend overlay-local;
-        in
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
         };

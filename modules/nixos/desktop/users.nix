@@ -44,4 +44,7 @@
       inputs.llm-agents.packages.x86_64-linux.cursor-agent
     ];
   };
+
+  # Autologin on TTY1
+  services.getty.autologinUser = "yassin";
 }

@@ -79,7 +79,4 @@
     layout = "us";
     variant = "";
   };
-
-  # Allow unfree packages (needed for some drivers/codecs)
-  nixpkgs.config.allowUnfree = true;
 }
