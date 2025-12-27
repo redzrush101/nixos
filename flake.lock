@@ -77,14 +77,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1766830441,
-        "narHash": "sha256-oZY53KKnMSbi2gImg8qTdCoZ2M/tpcObyGPsHrg7r5c=",
-        "path": "/home/yassin/Documents/custom-nix-pkgs",
-        "type": "path"
+        "lastModified": 1766831017,
+        "narHash": "sha256-Ntd9MFdx6GqfbN6Ph0aCG+HppOpAvG4MhD8sFAM4Uao=",
+        "owner": "redzrush101",
+        "repo": "custom-nix-pkgs",
+        "rev": "bd70d270c6f8ca962bdca1974f66d91e31137d56",
+        "type": "github"
       },
       "original": {
-        "path": "/home/yassin/Documents/custom-nix-pkgs",
-        "type": "path"
+        "owner": "redzrush101",
+        "repo": "custom-nix-pkgs",
+        "type": "github"
       }
     },
     "flake-compat": {

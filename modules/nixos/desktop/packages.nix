@@ -30,6 +30,17 @@
     openssl
     util-linux
     btop
+
+    # Android Mainlining Tools
+    android-tools
+    binwalk
+    lz4
+    dtc
+    gnumake
+    gcc
+    bison
+    flex
+    bc
   ];
 
   # Services
