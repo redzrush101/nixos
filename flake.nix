@@ -55,6 +55,9 @@
       overlay-iloader = final: prev: {
         iloader = inputs.custom-pkgs.packages.x86_64-linux.iloader;
       };
+      overlay-mtkclient = final: prev: {
+        mtkclient = inputs.custom-pkgs.packages.x86_64-linux.mtkclient;
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -71,6 +74,7 @@
               overlay-llm-agents
               overlay-iflow
               overlay-iloader
+              overlay-mtkclient
               inputs.nix-cachyos-kernel.overlays.default
             ];
             home-manager.useGlobalPkgs = true;
@@ -84,7 +88,7 @@
       packages.x86_64-linux =
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
-          inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader;
+          inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader mtkclient;
         };
     };
 }
