@@ -47,6 +47,7 @@
 
     initContent = ''
       export PATH="$HOME/.local/bin:$PATH"
+      export NIX_CONFIG="access-tokens = github.com=$(gh auth token)"
     '';
 
     loginExtra = ''
