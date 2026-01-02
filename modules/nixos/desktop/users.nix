@@ -29,6 +29,7 @@
     linger = true;
     packages = with pkgs; [
       antigravity
+      inetutils
       android-tools
       vscode
       discord
@@ -38,10 +39,11 @@
       fastfetch
       claude-code
       mtkclient
-      inputs.llm-agents.packages.x86_64-linux.claude-code-router
-      inputs.llm-agents.packages.x86_64-linux.opencode
-      inputs.llm-agents.packages.x86_64-linux.droid
-      inputs.llm-agents.packages.x86_64-linux.cursor-agent
+      pkgs.llm-agents.claude-code-router
+      shuvcode
+      pkgs.llm-agents.droid
+      pkgs.llm-agents.cursor-agent
+      shuvcode-desktop
     ];
   };
 

@@ -58,6 +58,10 @@
       overlay-mtkclient = final: prev: {
         mtkclient = inputs.custom-pkgs.packages.x86_64-linux.mtkclient;
       };
+      overlay-shuvcode = final: prev: {
+        shuvcode = inputs.custom-pkgs.packages.x86_64-linux.shuvcode;
+        shuvcode-desktop = inputs.custom-pkgs.packages.x86_64-linux.shuvcode-desktop;
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -75,6 +79,7 @@
               overlay-iflow
               overlay-iloader
               overlay-mtkclient
+              overlay-shuvcode
               inputs.nix-cachyos-kernel.overlays.default
             ];
             home-manager.useGlobalPkgs = true;
@@ -87,8 +92,9 @@
 
       packages.x86_64-linux =
         {
-          inherit (inputs.llm-agents.packages.x86_64-linux) opencode claude-code-router droid;
-          inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader mtkclient;
+          inherit (inputs.llm-agents.packages.x86_64-linux) claude-code-router droid;
+          shuvcode = inputs.custom-pkgs.packages.x86_64-linux.shuvcode;
+          inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader mtkclient shuvcode-desktop;
         };
     };
 }

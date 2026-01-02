@@ -17,7 +17,7 @@
     sbctl # For Secure Boot
     # Desktop Apps
     firefox
-    xfce.thunar
+    thunar
     # Utils
     libnotify # For notify-send
     sysstat # For i3blocks cpu/mem
