@@ -40,10 +40,11 @@
       claude-code
       mtkclient
       pkgs.llm-agents.claude-code-router
-      shuvcode
       pkgs.llm-agents.droid
       pkgs.llm-agents.cursor-agent
-      shuvcode-desktop
+      pkgs.llm-agents.opencode
+      pkgs.llm-agents.openspec
+
     ];
   };
 
