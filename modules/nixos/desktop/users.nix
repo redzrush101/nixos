@@ -14,6 +14,7 @@
       "podman"
       "adbusers"
       "plugdev"
+      "video"
     ];
     subUidRanges = [
       {

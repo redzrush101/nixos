@@ -12,6 +12,7 @@
     wlsunset
     i3blocks
     pamixer
+    brightnessctl
     swaybg
     socat
     grim

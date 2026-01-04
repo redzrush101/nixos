@@ -644,10 +644,6 @@ bindsym $mod+g mode "spaces"
     bindsym --locked XF86AudioNext exec playerctl next
     bindsym --locked XF86AudioStop exec playerctl stop
 
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-
     # Screenshot utility (Grim + Slurp + Swappy)
     # 1. Full screen - auto save to Pictures/Screenshots
     bindsym Print exec grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png && notify-send "Screenshot" "Full screen captured"
@@ -699,3 +695,9 @@ bar {
 }
 #
 # include @sysconfdir@/scroll/config.d/*
+
+    
+# Special keys to adjust brightness via brightnessctl with notifications
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- && notify-send -h string:x-canonical-private-synchronous:brightness -h "int:value:$(brightnessctl i | grep -oP '\(\K[^)]+' | tr -d '%')" "Brightness" "$(brightnessctl i | grep -oP '\(\K[^)]+')"
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+ && notify-send -h string:x-canonical-private-synchronous:brightness -h "int:value:$(brightnessctl i | grep -oP '\(\K[^)]+' | tr -d '%')" "Brightness" "$(brightnessctl i | grep -oP '\(\K[^)]+')"
+
