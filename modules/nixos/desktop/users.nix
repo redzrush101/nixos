@@ -13,6 +13,7 @@
       "wheel"
       "podman"
       "adbusers"
+      "plugdev"
     ];
     subUidRanges = [
       {
@@ -39,14 +40,17 @@
       fastfetch
       claude-code
       mtkclient
+      bun
+      unzip
       pkgs.llm-agents.claude-code-router
       pkgs.llm-agents.droid
       pkgs.llm-agents.cursor-agent
       pkgs.llm-agents.opencode
-      pkgs.llm-agents.openspec
 
     ];
   };
+
+  users.groups.plugdev = { };
 
   # Autologin on TTY1
   services.getty.autologinUser = "yassin";

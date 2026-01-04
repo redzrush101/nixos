@@ -13,6 +13,7 @@
   home.sessionPath = [ "/home/yassin/.local/bin" ];
 
   home.packages = with pkgs; [
+    odin4
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans

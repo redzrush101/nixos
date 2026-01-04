@@ -26,6 +26,7 @@
     file
     python3
     iflow-cli
+    openspec
     multipath-tools
     openssl
     util-linux

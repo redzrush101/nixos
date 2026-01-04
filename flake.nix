@@ -58,6 +58,13 @@
       overlay-mtkclient = final: prev: {
         mtkclient = inputs.custom-pkgs.packages.x86_64-linux.mtkclient;
       };
+      overlay-openspec = final: prev: {
+        openspec = inputs.custom-pkgs.packages.x86_64-linux.openspec;
+      };
+
+      overlay-odin = final: prev: {
+        odin4 = final.callPackage ./pkgs/odin4 { };
+      };
 
     in
     {
@@ -76,6 +83,8 @@
               overlay-iflow
               overlay-iloader
               overlay-mtkclient
+              overlay-openspec
+              overlay-odin
 
               inputs.nix-cachyos-kernel.overlays.default
             ];
@@ -91,6 +100,7 @@
         {
           inherit (inputs.llm-agents.packages.x86_64-linux) claude-code-router droid opencode openspec;
           inherit (inputs.custom-pkgs.packages.x86_64-linux) iflow-cli iloader mtkclient;
+          odin4 = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/odin4 { };
         };
     };
 }
