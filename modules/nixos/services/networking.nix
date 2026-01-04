@@ -6,7 +6,6 @@
 }:
 
 {
-  networking.hostName = "nixos";
 
   # Networking via systemd-networkd + IWD
   networking.networkmanager.enable = false;

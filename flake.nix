@@ -61,39 +61,53 @@
       overlay-openspec = final: prev: {
         openspec = inputs.custom-pkgs.packages.x86_64-linux.openspec;
       };
-
       overlay-odin = final: prev: {
         odin4 = final.callPackage ./pkgs/odin4 { };
       };
 
+      # Shared logic common to all hosts
+      shared-modules = [
+        inputs.lanzaboote.nixosModules.lanzaboote
+        home-manager.nixosModules.home-manager
+        ./modules/nixos/services/iloader.nix
+        {
+          nixpkgs.overlays = [
+            overlay-llm-agents
+            overlay-iflow
+            overlay-iloader
+            overlay-mtkclient
+            overlay-openspec
+            overlay-odin
+            inputs.nix-cachyos-kernel.overlays.default
+          ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.yassin = import ./home/yassin/default.nix;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
+      ];
+
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/nixos/default.nix
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.nixos-hardware.nixosModules.gigabyte-b550
-          home-manager.nixosModules.home-manager
-          ./modules/nixos/services/iloader.nix
-          {
-            nixpkgs.overlays = [
-              overlay-llm-agents
-              overlay-iflow
-              overlay-iloader
-              overlay-mtkclient
-              overlay-openspec
-              overlay-odin
+      nixosConfigurations = {
+        # DESKTOP CONFIGURATION
+        desktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/desktop/default.nix
+            inputs.nixos-hardware.nixosModules.gigabyte-b550
+          ] ++ shared-modules;
+        };
 
-              inputs.nix-cachyos-kernel.overlays.default
-            ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.yassin = import ./home/yassin/default.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
+        # LAPTOP CONFIGURATION
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/laptop/default.nix
+          ] ++ shared-modules;
+        };
       };
 
       packages.x86_64-linux =

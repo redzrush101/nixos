@@ -4,7 +4,7 @@
 
   nix.settings = {
     # Enable flakes
-    experimental-features = [ "nix-command" "flakes" "lazy-trees" ];
+    experimental-features = [ "nix-command" "flakes" ];
 
     # Auto-optimise store
     auto-optimise-store = true;

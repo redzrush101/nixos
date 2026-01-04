@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  networking.hostName = "laptop";
+
   imports = [
     ./hardware.nix
     # Core

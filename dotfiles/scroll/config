@@ -41,6 +41,21 @@ exec /usr/bin/env sh -c 'swaybg -i "$(find -L /home/yassin/.config/wallpapers -t
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+# Main Laptop Keyboard
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_layout "de"
+    repeat_delay 600
+    repeat_rate 25
+}
+
+# Laptop Touchpad (Tap-to-click enabled)
+input "1267:12448:ELAN0703:00_04F3:30A0_Touchpad" {
+    tap enabled
+    tap_button_map lrm
+    natural_scroll enabled
+    dwt enabled
+}
 
 ### Input configuration
 #
