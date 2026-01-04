@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Switch to Lix
-  nix.package = pkgs.lixPackageSets.stable.lix;
 
   nix.settings = {
     # Enable flakes
@@ -29,10 +27,4 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Lix overlay for tools
-  nixpkgs.overlays = [
-    (final: prev: {
-      inherit (prev.lixPackageSets.stable) nix-direnv;
-    })
-  ];
 }
