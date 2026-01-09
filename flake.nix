@@ -69,7 +69,7 @@
       shared-modules = [
         inputs.lanzaboote.nixosModules.lanzaboote
         home-manager.nixosModules.home-manager
-        ./modules/nixos/services/iloader.nix
+        ./modules/nixos/iloader.nix
         {
           nixpkgs.overlays = [
             overlay-llm-agents
