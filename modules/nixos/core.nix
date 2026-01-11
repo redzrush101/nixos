@@ -17,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Latest kernel
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # ===== NIX SETTINGS =====
   nix.settings = {

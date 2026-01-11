@@ -24,15 +24,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     custom-pkgs = {
       url = "github:redzrush101/custom-nix-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    direnv-instant = {
+      url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -78,7 +79,6 @@
             overlay-mtkclient
             overlay-openspec
             overlay-odin
-            inputs.nix-cachyos-kernel.overlays.default
           ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

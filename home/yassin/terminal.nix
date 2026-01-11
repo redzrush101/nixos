@@ -1,11 +1,16 @@
 {
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }:
 
 {
+  imports = [
+    inputs.direnv-instant.homeModules.direnv-instant
+  ];
+
   programs.kitty = {
     enable = true;
     # Theme symlinked
@@ -91,5 +96,12 @@
   services.mako = {
     enable = true;
     # Config symlinked
+  };
+
+  # Async direnv - instant shell prompts while direnv loads in background
+  programs.direnv-instant = {
+    enable = true;
+    enableZshIntegration = true;
+    enableKittyIntegration = true;
   };
 }

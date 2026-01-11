@@ -13,6 +13,12 @@
   # Enable dconf for Home Manager/GTK apps
   programs.dconf.enable = true;
 
+  # Direnv with nix-direnv for fast, cached nix-shell environments
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # ===== SYSTEM PACKAGES =====
   environment.systemPackages = with pkgs; [
     vim
